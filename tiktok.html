@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>History Shift · Sign-in</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <main>
+    <h1>History Shift</h1>
+    <p class="lema" id="mensaje">Finishing sign-in…</p>
+  </main>
+  <script>
+    // Página de retorno del inicio de sesión de TikTok. TikTok solo admite direcciones https,
+    // así que esta página reenvía la respuesta al programa local que la está esperando en el
+    // PC del canal (127.0.0.1). No guarda ni envía nada a ningún otro sitio.
+    const params = new URLSearchParams(location.search);
+    if (params.has('code') || params.has('error')) {
+      location.replace('http://127.0.0.1:8765/tiktok' + location.search);
+    } else {
+      document.getElementById('mensaje').textContent = 'Nothing to do here.';
+    }
+  </script>
+</body>
+</html>
